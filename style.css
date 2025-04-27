@@ -1,0 +1,823 @@
+* * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+
+/* 主导航栏 */
+nav {
+    background: #2c3e50;
+    padding: 1rem;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    height: 80px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+nav ul {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    gap: 2rem;
+}
+
+nav a {
+    color: #ecf0f1;
+    text-decoration: none;
+    padding: 0.8rem 1.2rem;
+    border-radius: 4px;
+    transition: all 0.3s;
+}
+
+nav a:hover {
+    background: #34495e;
+}
+
+/* 二级导航栏 */
+.sub-nav {
+    background: #637d97;
+    padding: 1rem;
+    margin-top: 80px;
+    height: 50px;
+    width: 100%;
+    box-shadow: 0 2px 3px rgba(0,0,0,0.1);
+}
+
+.sub-nav ul {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    list-style: none;
+}
+
+.sub-nav a {
+    color: #bdc3c7;
+    padding: 0.6rem 1rem;
+    font-size: 0.95em;
+}
+
+.sub-nav a:hover {
+    color: #ecf0f1;
+    background: #2c3e50;
+}
+
+/* 内容容器 */
+.container {
+    max-width: 1200px;
+    margin: 130px auto 100px;
+    padding: 0 2rem;
+}
+
+.page-title {
+    text-align: center;
+    margin-bottom: 3rem;
+    color: #2c3e50;
+}
+
+/* Member页面特殊间距 */
+body[data-page="members"] .container {
+    margin-top: 160px;
+}
+
+@media (max-width: 768px) {
+    body[data-page="members"] .container {
+        margin-top: 220px;
+    }
+    
+    body[data-page="members"] .sub-nav {
+        margin-top: 80px;
+    }
+}
+
+/* Zn-content页面特殊间距 */
+body[data-page="zn-content"] .container {
+    margin-top: 160px;
+}
+
+@media (max-width: 768px) {
+    body[data-page="zn-content"] .container {
+        margin-top: 220px;
+    }
+}
+
+/* 成员公共样式 */
+.member-profile {
+    background: white;
+    border-radius: 10px;
+    padding: 1.5rem;
+    box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+}
+
+/* 教授页面 */
+.professor-detail {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 2rem;
+}
+
+.honors-list {
+    columns: 2;
+    margin: 1rem 0;
+}
+
+/* 博士生页面 */
+.phd-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 4rem;
+}
+
+/* 研究生页面 */
+.master-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 4rem;
+}
+
+/* 本科生页面 */
+.undergrad-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 4rem;
+}
+
+/* 首页页面 */
+.index-grid {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 1rem;
+}
+
+/* 联系页面 */
+.content-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 4rem;
+}
+
+/* 联系下方样式 */
+.new-container {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 1rem;
+    margin-top: 3rem; /* 新增：与标题的 margin-bottom 值一致 */
+}
+
+/* 响应式设计 */
+@media (max-width: 1200px) {
+    .master-grid { grid-template-columns: repeat(4, 1fr); }
+    .undergrad-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (max-width: 992px) {
+    .professor-detail { grid-template-columns: 1fr; }
+    .phd-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 768px) {
+    nav ul { flex-direction: column; text-align: center; }
+    nav { height: auto; padding: 0.5rem; }
+    .sub-nav { margin-top: 80px; }
+    .container { margin-top: 160px; }
+    
+    .master-grid { grid-template-columns: repeat(2, 1fr); }
+    .undergrad-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 576px) {
+    .master-grid,
+    .undergrad-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .new-container {
+        margin-top: 2rem; /* 小屏幕减少间距 */
+    }
+}
+
+
+/* 组件 */
+.member-overview {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+}
+
+.overview-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    transition: transform 0.3s;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.overview-card:hover {
+    transform: translateY(-5px);
+}
+
+body {
+    position: relative;
+    min-height: 100vh;
+}
+
+/* 图片样式 */
+img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 6px;
+    object-fit: cover;
+}
+
+/* 页脚 */
+footer {
+    background: #2c3e50;
+    color: #ecf0f1;
+    text-align: center;
+    padding: 1.5rem;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+/*------------------------------------------*/
+/* 添加悬停动画效果 */
+.member-profile {
+    transition: all 0.3s ease;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.member-profile:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+}
+
+/* 图片放大效果 */
+.member-profile img {
+    transition: transform 0.3s ease;
+}
+
+.member-profile:hover img {
+    transform: scale(1.05);
+}
+
+/* 文字浮动效果 */
+.member-profile p {
+    max-height: 0;
+    opacity: 0;
+    transition: all 0.3s ease;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(255,255,255,0.9);
+    padding: 0 1rem;
+    margin: 0;
+}
+
+.member-profile:hover p {
+    max-height: 100px;
+    opacity: 1;
+    padding: 1rem;
+}
+
+.member-profile.active {
+    transform: scale(1.02);
+    z-index: 10;
+}
+
+.member-profile.active h4 {
+    color: #2a7ae2; /* 主色调变化 */
+}
+
+/*------------------------------------------*/
+/*常用字体*/
+.normal {
+    display: block;               /* 改为块级元素 */
+    width: 100%;                 /* 撑满容器 */
+    white-space: normal !important; /* 强制正常换行 */
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE/Edge */
+    list-style-type: none; /* 移除项目符号 */
+}
+.normal::-webkit-scrollbar {
+    display: none; /* Chrome/Safari */
+}
+
+.normal-pl {
+    display: block;               /* 改为块级元素 */
+    width: 100%;                 /* 撑满容器 */
+    white-space: normal !important; /* 强制正常换行 */
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE/Edge */
+    list-style-type: none; /* 移除项目符号 */
+    text-indent: 3em;
+    padding-left: 1.5em; /* 每一行开始空两个字符 */
+    padding-right: 1em; /* 每一行结束空两个字符 */
+}
+.normal-pl::-webkit-scrollbar {
+    display: none; /* Chrome/Safari */
+}
+
+.normal-news {
+    display: block;               /* 改为块级元素 */
+    width: 100%;                 /* 撑满容器 */
+    white-space: normal !important; /* 强制正常换行 */
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE/Edge */
+    list-style-type: none; /* 移除项目符号 */
+    padding-left: 1.5em; /* 每一行开始空两个字符 */
+    padding-right: 1em; /* 每一行结束空两个字符 */
+}
+.normal-news::-webkit-scrollbar {
+    display: none; /* Chrome/Safari */
+}
+
+.big {
+    display: block;
+    width: 100%;
+    white-space: normal !important;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    list-style-type: none;
+    font-size: 1.25rem; 
+}
+.big::-webkit-scrollbar {
+    display: none; /* Chrome/Safari */
+}
+
+.big-1 {
+    display: block;
+    width: 100%;
+    white-space: normal !important;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    list-style-type: none;
+    font-size: 1.7rem; 
+    padding-left: 0.5em; /* 每一行开始空两个字符 */
+    padding-right: 0.5em; /* 每一行结束空两个字符 */
+}
+.big-1::-webkit-scrollbar {
+    display: none; /* Chrome/Safari */
+}
+
+.big-point {
+    display: block;
+    width: 100%;
+    white-space: normal !important;
+    scrollbar-width: none;
+    font-size: 1.2rem; 
+    padding-left: 0.5em; /* 每一行开始空两个字符 */
+    padding-right: 0.5em; /* 每一行结束空两个字符 */
+}
+.big-1::-webkit-scrollbar {
+    display: none; /* Chrome/Safari */
+}
+
+.large {
+    display: block;
+    width: 100%;
+    text-align: center;
+    white-space: normal !important;
+    overflow-wrap: break-word;
+    word-break: break-all;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    list-style-type: none;
+    font-size: 3rem; 
+}
+.large::-webkit-scrollbar {
+    display: none; /* Chrome/Safari */
+}
+
+.large-1 {
+    display: block;
+    width: 100%;
+    text-align: center;
+    white-space: normal !important;
+    overflow-wrap: break-word;
+    word-break: break-all;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    list-style-type: none;
+    font-size: 2rem; 
+}
+.large-1::-webkit-scrollbar {
+    display: none; /* Chrome/Safari */
+}
+
+
+.simpletype {
+    display: block;
+    width: 100%;
+    white-space: normal !important;
+    overflow-wrap: break-word;
+    word-break: break-all;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+
+    /* 间距设置 */
+    margin: 1rem 0;
+}
+
+@media (max-width: 768px) {
+    .simpletype {
+        margin: 1.8rem 0;
+    }
+}
+
+/* 新增图片区域样式 */
+.image-banner {
+    margin: 2rem 0;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.aspect-ratio-box {
+    position: relative;
+    width: 100%;
+    padding-top: var(--aspect-ratio);
+}
+
+.aspect-ratio-box img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+    .image-banner {
+        margin: 1rem 0;
+        border-radius: 4px;
+    }
+}
+
+/* 详情页专用容器 */
+.new-member-profile {
+    background: white;
+    border-radius: 10px;
+    padding: 1.5rem;
+    display: flex;
+    align-items: start;
+    box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+}
+
+.new-member-profile img {
+    max-width: 250px;
+    height: auto;
+    border-radius:50%;
+    object-fit: cover;
+    margin-right: 1rem;
+}
+
+.new-member-profile {
+    transition: none;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.new-member-profile:hover {
+    transform: none;
+    box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+}
+
+.new-member-profile img {
+    transition: none;
+}
+
+.new-member-profile:hover img {
+    transform: none;
+}
+
+.new-member-profile p {
+    max-height: none;
+    opacity: 1;
+    position: static;
+    background: none;
+    padding: 0;
+    margin: 0;
+}
+
+.new-member-profile:hover p {
+    max-height: none;
+    opacity: 1;
+    padding: 0;
+}
+
+.new-member-profile.active {
+    transform: none;
+    z-index: auto;
+}
+
+.new-member-profile div {
+    flex: 1;
+}
+.new-member-profile h1 {
+    margin-top: 0;
+}
+.new-member-profile h3 {
+    margin: 0.5rem 0;
+}
+
+.new-member-profile.active h4 {
+    color: inherit;
+}
+
+/* 新增research页面专用样式 */
+.research-profile {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+    background: white;
+    border-radius: 10px;
+    padding: 1.5rem;
+    box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+    margin-bottom: 2rem;
+}
+
+/* 右侧图片布局 */
+.research-profile.right-image {
+    flex-direction: row;
+}
+.research-profile.right-image img {
+    order: 2;
+}
+
+/* 左侧图片布局 */
+.research-profile.left-image {
+    flex-direction: row-reverse;
+}
+.research-profile.left-image img {
+    order: -1;
+}
+
+/* 内容区域自适应 */
+.research-profile .content-wrapper {
+    flex: 1;
+}
+
+/* 图片样式 */
+.research-profile img {
+    width: 300px;
+    height: 200px;
+    border-radius: 8px;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .research-profile {
+        flex-direction: column!important;
+    }
+    .research-profile img {
+        width: 100%;
+        max-width: 400px;
+        height: auto;
+        order: 0!important;
+    }
+}
+
+/* 响应式适配 */
+@media (max-width: 768px) {
+    .new-member-profile.right-image,
+    .new-member-profile.left-image {
+        flex-direction: column;
+    }
+    
+    .new-member-profile img {
+        width: 100%;
+        height: auto;
+        max-width: 400px;
+        margin: 1rem auto;
+    }
+}
+
+/* 调整文字容器宽度 */
+.new-member-profile.right-image ul,
+.new-member-profile.left-image ul {
+    flex: 1;
+    margin: 0;
+}
+
+ /* 图片下写字 */
+ .special-con {
+    width: 250px; /* 减少容器宽度 */
+    margin-right: -450px; /* 通过负外边距左移容器 */
+    display: flex;
+    flex-direction: column;
+    padding-left: 25px;
+    padding-top: 20px;
+}
+.name-title {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: #2c3e50;
+    margin: 0.8rem 0 0 15px; /* 左移文字 */
+    line-height: 3;
+}
+.position-subtitle {
+    font-size: 1.5rem;
+    color: #637d97;
+    line-height: 1.4;
+    margin:center; 
+    width: 230px; /* 限制文字宽度与图片对齐 */
+}
+
+/* 表格 */
+table {
+    width: 100%;
+    border-collapse: collapse; /* 合并边框 */
+}
+th, td {
+    border: 1px solid #ccc; /* 添加边框线 */
+    padding: 8px;
+    text-align: left;
+}
+
+/* 搜索系统 */
+.search-container {
+    position: relative;
+    max-width: 600px;
+    margin: 0 auto 3rem;
+    display: flex;
+    align-items: center;
+}
+
+#searchInput {
+    width: 100%;
+    padding: 12px 50px 12px 20px;
+    border: 2px solid #2c3e50; /* 使用主导航栏颜色作为边框 */
+    border-radius: 30px;
+    background: white; /* 中间变为白色 */
+    color: #2c3e50; /* 文字颜色与边框一致 */
+    font-size: 1rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+#searchButton {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    padding: 0;
+}
+
+#searchResults {
+    position: absolute;
+    top: 100%;
+    left: 20px;  /* 对齐边框 */
+    right: 20px; /* 对齐边框 */
+    background: white;
+    border: 2px solid #2c3e50;
+    border-radius: 0 0 10px 10px; /* 匹配输入框圆角 */
+    border-top: none;
+    max-height: 300px;
+    overflow-y: auto;
+    display: none;
+    z-index: 1000;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.search-result-item {
+    padding: 12px 20px;
+    color: #2c3e50; /* 文字颜色与搜索框一致 */
+    font-size: 1rem; /* 与输入框字体相同 */
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.search-result-item:hover {
+    background: #f8f9fa;
+}
+
+/* 修改高亮动画为字体颜色变化 */
+.highlight {
+    -webkit-animation: text-highlight 5s ease;
+    animation: text-highlight 5s ease;
+}
+
+@-webkit-keyframes text-highlight {
+    from { color:#7b8a98; }  /* 主色调蓝色 */
+    to { color: inherit; }    /* 恢复原始颜色 */
+}
+
+@keyframes text-highlight {
+    from { color: #7b8a98; }
+    to { color: inherit; }
+}
+
+/* 确保标题有默认颜色继承 */
+.index-grid h2 {
+    color: inherit;  /* 继承父级颜色 */
+    transition: color 0.3s; /* 添加平滑过渡 */
+}
+
+
+/* 新增翻转卡片样式 */
+.flip-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    margin: 3rem 0;
+}
+
+.flip-card {
+    aspect-ratio: 1;
+    perspective: 1000px;
+    cursor: pointer;
+}
+
+.flip-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.flip-card:hover .flip-inner {
+    transform: rotateY(180deg);
+}
+
+.flip-front, .flip-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 15px;
+    font-weight: 600;
+    /* 新增图片背景样式 */
+    background-size: cover;
+    background-position: center;
+    /* 文字增强样式 */
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    /* 新增遮罩层 */
+    &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.112);
+        border-radius: 15px;
+    }
+}
+
+.flip-front {
+    /* 为每个卡片单独设置背景图 */
+    font-size: 6rem;
+    /* 通过自定义属性设置图片路径 */
+    background-image: var(--front-image);
+}
+
+.flip-back {
+    transform: rotateY(180deg);
+    font-size: 2.5rem;
+    padding: 1rem;
+    text-align: center;
+    background-image: var(--back-image);
+}
+
+/* 为每个卡片单独设置图片 */
+.flip-container > :nth-child(1) .flip-front { --front-image: url(/images/XRNA/X.jpg); }
+.flip-container > :nth-child(1) .flip-back { --back-image: url(/images/XRNA/RB.png); }
+
+.flip-container > :nth-child(2) .flip-front { --front-image: url(/images/XRNA/R.jpg); }
+.flip-container > :nth-child(2) .flip-back { --back-image: url(/images/XRNA/XB.png); }
+
+.flip-container > :nth-child(3) .flip-front { --front-image: url(/images/XRNA/N.jpg); }
+.flip-container > :nth-child(3) .flip-back { --back-image: url(/images/XRNA/NB.png); }
+
+.flip-container > :nth-child(4) .flip-front { --front-image: url(/images/XRNA/A.jpg); }
+.flip-container > :nth-child(4) .flip-back { --back-image: url(/images/XRNA/AB.png); }
+
+
+@media (max-width: 768px) {
+    .flip-container {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+}
