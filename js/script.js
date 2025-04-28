@@ -99,7 +99,14 @@ document.addEventListener('DOMContentLoaded', function() {
     if (takeScreenshotButton) {
         takeScreenshotButton.addEventListener('click', function(event) {
             event.preventDefault();
-            
+
+            // 获取背景图片元素
+            const backgroundImage = document.getElementById('centered-background-image');
+            // 隐藏背景图片
+            if (backgroundImage) {
+                backgroundImage.style.display = 'none';
+            }
+
             // 获取页脚元素
             const footer = document.querySelector('footer');
             const originalStyle = {
@@ -117,12 +124,17 @@ document.addEventListener('DOMContentLoaded', function() {
 
             // 选择要截图的元素
             const elementToCapture = document.body;
-            
+
             html2canvas(elementToCapture).then(function(canvas) {
                 // 恢复原始样式
                 footer.style.position = originalStyle.position;
                 footer.style.bottom = originalStyle.bottom;
                 footer.style.top = originalStyle.top;
+
+                // 显示背景图片
+                if (backgroundImage) {
+                    backgroundImage.style.display = 'block';
+                }
 
                 // 创建下载链接
                 const link = document.createElement('a');
