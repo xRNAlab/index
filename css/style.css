@@ -41,9 +41,12 @@ nav a:hover {
 .sub-nav {
     background: #637d97;
     padding: 1rem;
-    margin-top: 80px;
+    top: 80px;
     height: 50px;
     width: 100%;
+    z-index: 999;
+    left: 0;
+    position: fixed;
     box-shadow: 0 2px 3px rgba(0,0,0,0.1);
 }
 
