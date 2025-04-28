@@ -5,7 +5,6 @@
     font-family: 'Segoe UI', Arial, sans-serif;
 }
 
-
 /* 主导航栏 */
 nav {
     background: #2c3e50;
@@ -13,9 +12,13 @@ nav {
     position: fixed;
     width: 100%;
     top: 0;
+    list-style: none;
     z-index: 1000;
     height: 80px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    display: flex; /* 使用flex布局 */
+    justify-content: center; /* 水平居中 */
+    align-items: center; /* 垂直居中 */
 }
 
 nav ul {
@@ -23,6 +26,9 @@ nav ul {
     justify-content: center;
     list-style: none;
     gap: 2rem;
+    margin: 0; /* 去除默认边距 */
+    padding: 0; /* 去除默认内边距 */
+    flex-wrap: wrap; /* 允许子元素换行 */
 }
 
 nav a {
@@ -48,6 +54,9 @@ nav a:hover {
     left: 0;
     position: fixed;
     box-shadow: 0 2px 3px rgba(0,0,0,0.1);
+    display: flex; /* 使用flex布局 */
+    justify-content: center; /* 水平居中 */
+    align-items: center; /* 垂直居中 */
 }
 
 .sub-nav ul {
@@ -55,6 +64,9 @@ nav a:hover {
     justify-content: center;
     gap: 1.5rem;
     list-style: none;
+    margin: 0; /* 去除默认边距 */
+    padding: 0; /* 去除默认内边距 */
+    flex-wrap: wrap; /* 允许子元素换行 */
 }
 
 .sub-nav a {
@@ -66,6 +78,80 @@ nav a:hover {
 .sub-nav a:hover {
     color: #ecf0f1;
     background: #2c3e50;
+}
+
+/* 透明导航栏 */
+.transparent-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 80px; /* 与原导航栏高度一致 */
+    background: transparent;
+    z-index: 1001; /* 确保在原导航栏之上 */
+    display: flex;
+    align-items: center;
+    padding-left: 3%; /* 调整 logo 与左侧的间距 */
+    pointer-events: none; /* 让鼠标事件穿透该元素 */
+}
+
+/* 导航栏 logo */
+.transparent-nav .nav-logo {
+    display: flex;
+    align-items: center;
+    pointer-events: auto; /* 恢复 logo 的鼠标事件响应 */
+}
+
+.transparent-nav .nav-logo img {
+    height: auto;
+    max-height: 60px; /* 调整 logo 的最大高度 */
+}
+
+@media (max-width: 768px) {
+    nav {
+        height: auto; /* 高度自适应，以适应换行 */
+        padding: 0.5rem;
+        position: relative; /* 改为相对定位，避免遮挡后续内容 */
+    }
+
+    nav ul {
+        gap: 1rem; /* 缩小间距 */
+        flex-direction: column; /* 纵向排列 */
+        text-align: center;
+    }
+
+    nav a {
+        padding: 0.6rem 1rem; /* 缩小内边距 */
+    }
+
+    .sub-nav {
+        height: auto; /* 高度自适应，以适应换行 */
+        position: relative; /* 改为相对定位，避免遮挡后续内容 */
+        top: 0; /* 重置 top 值 */
+        margin-top: 0; /* 重置 margin-top 值 */
+        padding: 0.5rem;
+    }
+
+    .sub-nav ul {
+        gap: 1rem; /* 缩小间距 */
+        flex-direction: column; /* 纵向排列 */
+        text-align: center;
+    }
+
+    .sub-nav a {
+        padding: 0.5rem 0.8rem; /* 缩小内边距 */
+        font-size: 0.9em; /* 缩小字体大小 */
+    }
+
+    .container {
+        margin-top: 20px; /* 增加顶部间距，避免被导航栏遮挡 */
+    }
+}
+
+@media (max-width: 1200px) {
+    .transparent-nav {
+        display: none !important;
+    }
 }
 
 /* 内容容器 */
@@ -86,13 +172,9 @@ body[data-page="members"] .container {
     margin-top: 160px;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1200px) {
     body[data-page="members"] .container {
-        margin-top: 220px;
-    }
-    
-    body[data-page="members"] .sub-nav {
-        margin-top: 80px;
+        margin-top: 20px; /* 调整 Member 页面的顶部间距 */
     }
 }
 
@@ -101,9 +183,9 @@ body[data-page="zn-content"] .container {
     margin-top: 160px;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1200px) {
     body[data-page="zn-content"] .container {
-        margin-top: 220px;
+        margin-top: 20px; /* 调整 Zn-content 页面的顶部间距 */
     }
 }
 
@@ -171,22 +253,17 @@ body[data-page="zn-content"] .container {
 }
 
 /* 响应式设计 */
-@media (max-width: 1200px) {
+@media (max-width: 576px) {
     .master-grid { grid-template-columns: repeat(4, 1fr); }
     .undergrad-grid { grid-template-columns: repeat(3, 1fr); }
 }
 
-@media (max-width: 992px) {
+@media (max-width: 576px) {
     .professor-detail { grid-template-columns: 1fr; }
     .phd-grid { grid-template-columns: 1fr; }
 }
 
-@media (max-width: 768px) {
-    nav ul { flex-direction: column; text-align: center; }
-    nav { height: auto; padding: 0.5rem; }
-    .sub-nav { margin-top: 80px; }
-    .container { margin-top: 160px; }
-    
+@media (max-width: 576px) {
     .master-grid { grid-template-columns: repeat(2, 1fr); }
     .undergrad-grid { grid-template-columns: repeat(2, 1fr); }
 }
@@ -198,12 +275,11 @@ body[data-page="zn-content"] .container {
     }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 576px) {
     .new-container {
         margin-top: 2rem; /* 小屏幕减少间距 */
     }
 }
-
 
 /* 组件 */
 .member-overview {
@@ -416,7 +492,6 @@ footer {
     display: none; /* Chrome/Safari */
 }
 
-
 .simpletype {
     display: block;
     width: 100%;
@@ -430,7 +505,7 @@ footer {
     margin: 1rem 0;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1200px) {
     .simpletype {
         margin: 1.8rem 0;
     }
@@ -459,8 +534,10 @@ footer {
     object-fit: cover;
 }
 
+
+
 /* 响应式调整 */
-@media (max-width: 768px) {
+@media (max-width: 1200px) {
     .image-banner {
         margin: 1rem 0;
         border-radius: 4px;
@@ -582,7 +659,7 @@ footer {
 }
 
 /* 响应式设计 */
-@media (max-width: 768px) {
+@media (max-width: 1200px) {
     .research-profile {
         flex-direction: column!important;
     }
@@ -595,7 +672,7 @@ footer {
 }
 
 /* 响应式适配 */
-@media (max-width: 768px) {
+@media (max-width: 1200px) {
     .new-member-profile.right-image,
     .new-member-profile.left-image {
         flex-direction: column;
@@ -818,9 +895,52 @@ th, td {
 .flip-container > :nth-child(4) .flip-back { --back-image: url(/index/images/XRNA/AB.jpg); }
 
 
-@media (max-width: 768px) {
+@media (max-width:1200px) {
     .flip-container {
         grid-template-columns: repeat(2, 1fr);
         gap: 1rem;
+    }
+}
+
+/* 居中底层图片样式 */
+.centered-background-image {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 25%; /* 大约是整个页面的四分之一 */
+    height: auto;
+    opacity: 0.3; /* 大约50%的透明感 */
+    z-index: -1; /* 置于最底层 */
+    pointer-events: none; /* 让鼠标事件穿透该元素 */
+}
+
+/*教授图片自适应调整*/
+@media (max-width: 1200px) {
+    /* 隐藏圆形照片、姓名和职位信息 */
+   .professor-detail .special-con img,
+   .professor-detail .name-title,
+   .professor-detail .position-subtitle {
+        display: none;
+    }
+}
+
+/* 新增手机菜单按钮样式 */
+.mobile-menu-btn {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: #ecf0f1;
+    z-index: 1002; /* 确保在导航栏之上 */
+    cursor: pointer;
+}
+
+/* 调整导航栏的 padding 以避免被按钮覆盖 */
+@media (max-width: 768px) {
+    nav {
+        padding-right: 40px; /* 给按钮留出空间 */
     }
 }
