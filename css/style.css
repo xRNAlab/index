@@ -805,17 +805,17 @@ th, td {
 }
 
 /* 为每个卡片单独设置图片 */
-.flip-container > :nth-child(1) .flip-front { --front-image: url(https://xrnalab.github.io/images/XRNA/X.jpg); }
-.flip-container > :nth-child(1) .flip-back { --back-image: url(https://xrnalab.github.io/images/XRNA/RB.png); }
+.flip-container > :nth-child(1) .flip-front { --front-image: url(images/XRNA/X.jpg); }
+.flip-container > :nth-child(1) .flip-back { --back-image: url(images/XRNA/RB.png); }
 
-.flip-container > :nth-child(2) .flip-front { --front-image: url(https://xrnalab.github.io/images/XRNA/R.jpg); }
-.flip-container > :nth-child(2) .flip-back { --back-image: url(https://xrnalab.github.io/images/XRNA/XB.png); }
+.flip-container > :nth-child(2) .flip-front { --front-image: url(images/XRNA/R.jpg); }
+.flip-container > :nth-child(2) .flip-back { --back-image: url(images/XRNA/XB.png); }
 
-.flip-container > :nth-child(3) .flip-front { --front-image: url(https://xrnalab.github.io/images/XRNA/N.jpg); }
-.flip-container > :nth-child(3) .flip-back { --back-image: url(https://xrnalab.github.io/images/XRNA/NB.png); }
+.flip-container > :nth-child(3) .flip-front { --front-image: url(images/XRNA/N.jpg); }
+.flip-container > :nth-child(3) .flip-back { --back-image: url(images/XRNA/NB.png); }
 
-.flip-container > :nth-child(4) .flip-front { --front-image: url(https://xrnalab.github.io/images/XRNA/A.jpg); }
-.flip-container > :nth-child(4) .flip-back { --back-image: url(https://xrnalab.github.io/images/XRNA/AB.png); }
+.flip-container > :nth-child(4) .flip-front { --front-image: url(images/XRNA/A.jpg); }
+.flip-container > :nth-child(4) .flip-back { --back-image: url(images/XRNA/AB.png); }
 
 
 @media (max-width: 768px) {
