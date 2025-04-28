@@ -322,9 +322,6 @@ footer {
     position: fixed;
     bottom: 0;
     width: 100%;
-    text-align: center;
-    margin: 0 auto;
-    clear: both; /* 如果有浮动元素，确保清除浮动 */
 }
 
 /*------------------------------------------*/
