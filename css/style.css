@@ -703,7 +703,7 @@ footer {
  /* 图片下写字 */
  .special-con {
     width: 250px; /* 减少容器宽度 */
-    margin-right: -450px; /* 通过负外边距左移容器 */
+    margin-right: -400px; /* 通过负外边距左移容器 */
     display: flex;
     flex-direction: column;
     padding-left: 25px;
