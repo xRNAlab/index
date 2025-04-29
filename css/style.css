@@ -244,6 +244,13 @@ body[data-page="zn-content"] .container {
     gap: 4rem;
 }
 
+@media (max-width: 1200px) {
+    .content-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+
 /* 联系下方样式 */
 .new-container {
     display: grid;
